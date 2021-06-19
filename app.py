@@ -3,6 +3,7 @@ import firebase_admin
 from firebase_admin import credentials, db, storage
 import datetime
 import os
+import json
 
 
 app = Flask(__name__)  # flask app object
@@ -52,6 +53,17 @@ def getScheduleData():
   except Exception as error:
     print(error)
     flash(error)
+
+@app.route("/database") # gives data to schedule route
+def database():
+  try:
+    temp = open("key/database_model.json")
+    data = json.load(temp)
+    return jsonify(data)
+  except Exception as error:
+    print(error)
+    flash(error)
+
 
 @app.route("/bookInterview/<id>", methods=['GET', 'POST']) # gives data to schedule route
 def bookInterview(id):
@@ -130,7 +142,6 @@ def viewUpcoming():
 def getUpcomingData():
   try:
     temp = db.reference('upcoming').get()
-    print(temp)
     temp = list(filter((None).__ne__, temp))
     return jsonify(temp)
   except Exception as error:
@@ -174,7 +185,7 @@ def editInterview(id):
             os.remove(filename)
           print('almost done')
         candidateData['id'] = id
-        db.reference('upcoming').child(id).set(candidateData)
+        db.reference('upcoming').child(id).update(candidateData)
         st = "Schedule changed "+candidateData['scheduleTime']
         flash(st)
         print('success')

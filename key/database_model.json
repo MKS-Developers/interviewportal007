@@ -1,0 +1,46 @@
+{
+  "students" : [ {
+    "availableFrom" : "18:00",
+    "availableon" : "2021-06-22",
+    "email" : "kashish.sharma@scaler.com",
+    "id" : "0",
+    "name" : "Kashish Sharma",
+    "phone" : "9998887771",
+    "resume" : "None"
+  }, null, {
+    "availableFrom" : "18:00",
+    "availableon" : "2021-06-22",
+    "email" : "meghna.yadav@scaler.com",
+    "id" : "2",
+    "name" : "Meghana",
+    "phone" : "9988776655",
+    "resume" : "None"
+  }, null, {
+    "availableFrom" : "18:00",
+    "availableon" : "2021-06-22",
+    "email" : "vidushi.attrey@scaler.com",
+    "id" : "4",
+    "name" : "Vidushi Attrey",
+    "phone" : "9966887755",
+    "resume" : "None"
+  } ],
+  "upcoming" : [ null, {
+    "availableFrom" : "18:00",
+    "availableon" : "2021-06-22",
+    "email" : "srikanthkoti007@gmail.com",
+    "id" : "1",
+    "name" : "Krishna Srikanth",
+    "phone" : "8711875219",
+    "resumeURL" : "https://storage.googleapis.com/interviewportal-007.appspot.com/Resumes/1.pdf",
+    "scheduleTime" : "23:12"
+  }, null, {
+    "availableFrom" : "18:00",
+    "availableon" : "2021-06-22",
+    "email" : "aparna@scaler.com",
+    "id" : "3",
+    "name" : "Aparna",
+    "phone" : "7788445566",
+    "resumeURL" : "https://storage.googleapis.com/interviewportal-007.appspot.com/Resumes/3.pdf",
+    "scheduleTime" : "23:54"
+  } ]
+}
