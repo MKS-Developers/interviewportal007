@@ -1,0 +1,64 @@
+{% extends "layout.html" %} {% block content %}
+<div class="container">
+  {% for message in get_flashed_messages() %}
+  <br />
+  <div class="alert alert-warning">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    {{ message }}
+  </div>
+  {% endfor %}
+</div>
+<!-- <h1 class="mt-4">{{title}}</h1> -->
+<ol class="breadcrumb mb-4">
+  <li class="breadcrumb-item active">{{title}}</li>
+</ol>
+<div class="card md-4 shadow">
+
+  <div class="card-body">
+    <div class="row d-flex justify-content-between">
+      <div class="col-xl-10">
+        <h4>ReadMe</h4>
+      </div>
+      <br>
+      <hr class="solid"/>
+      <div class="container">
+        <div class="row">
+          <div class="col-xl-4">
+            <h6>Technologies used:</h6>
+            <ul>
+              <li>HTML</li>
+              <li>Bootstrap</li>
+              <li>Flask(Python web Framework)</li>
+              <li>Firebase- Realtime Database</li>
+              <li>Firebase- Storage</li>
+            </ul>
+            <h6>Plugins used:</h6>
+            <ul>
+              <li>Datatables</li>
+            </ul>
+          </div>
+          <div class="col-xl-4">
+            <h6>Website Features:</h6>
+            <ul>
+              <li>Schedule Interview</li>
+              <li>Check Upcoming Interviews</li>
+              <li>Upload Candidate Resume</li>
+              <li>Download Candidate Resume</li>
+              <li>Connected to Firebase Database</li>
+              <li>Connected to Firebase Storage</li>
+            </ul>
+          </div>
+          <div class="col-xl-4">
+              <h6>Resources</h6>
+              <ul>
+                <li><a href="">Git Ripo (Click me)</a></li>
+                <li><a href="">Database Model/ Structure (Click me)</a></li>
+              </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

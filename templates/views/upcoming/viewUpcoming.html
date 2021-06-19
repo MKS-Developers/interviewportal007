@@ -1,0 +1,197 @@
+{% extends "layout.html" %} {% block content %}
+<div class="container">
+  {% for message in get_flashed_messages() %}
+  <br />
+  <div class="alert alert-warning">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    {{ message }}
+  </div>
+  {% endfor %}
+</div>
+<h1 class="mt-4">{{title}}</h1>
+<ol class="breadcrumb mb-4">
+  <li class="breadcrumb-item">
+    <a href="{{url_for('home')}}">Home</a>
+  </li>
+  <li class="breadcrumb-item">
+    <a href="{{url_for('upcoming')}}">Upcoming</a>
+  </li>
+  <li class="breadcrumb-item active">{{title}}</li>
+</ol>
+
+<h6>Note: Candidate Data is Read Only</h6>
+<div class="card md-4 shadow">
+  <div class="card-body">
+    <div class="row d-flex justify-content-between">
+      <div class="col-xl-10">
+        <h4>{{data['name']}}</h4>
+      </div>
+    </div>
+    <hr class="solid" />
+    <div class="container">
+      <form
+        action='{{url_for("editInterview",id=data["id"])}}'
+        method="POST"
+        enctype="multipart/form-data"
+      >
+        <div class="row">
+          <div class="col-xl-2"></div>
+
+          <div class="col-xl-8">
+            <div class="row">
+              <div class="col-xl-12">
+                <label for="name">Name</label>
+                <div class="input-group mb-3">
+                  <input
+                    required
+                    readonly
+                    id="name"
+                    name="name"
+                    type="text"
+                    class="form-control"
+                    placeholder="Name"
+                    value="{{data['name']}}"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-xl-6">
+                <label for="email">Email</label>
+                <div class="input-group mb-3">
+                  <input
+                    required
+                    readonly
+                    id="email"
+                    name="email"
+                    type="email"
+                    class="form-control"
+                    placeholder="Email"
+                    value="{{data['email']}}"
+                  />
+                </div>
+              </div>
+              <div class="col-xl-6">
+                <label for="phone">Phone</label>
+                <div class="input-group mb-3">
+                  <input
+                    required
+                    readonly
+                    id="phone"
+                    name="phone"
+                    type="number"
+                    class="form-control"
+                    placeholder="Phone Number"
+                    value="{{data['phone']}}"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xl-6">
+                <label for="availableon">Available Date</label>
+                <div class="input-group mb-3">
+                  <input
+                    required
+                    readonly
+                    id="availableon"
+                    name="availableon"
+                    type="datetime"
+                    class="form-control"
+                    placeholder="Date"
+                    value="{{data['availableon']}}"
+                    readonly
+                  />
+                </div>
+              </div>
+              <div class="col-xl-6">
+                <label for="availableFrom">Available After</label>
+                <div class="input-group mb-3">
+                  <input
+                    required
+                    readonly
+                    id="availableFrom"
+                    name="availableFrom"
+                    type="datetime"
+                    class="form-control"
+                    placeholder="Time"
+                    value="{{data['availableFrom']}}"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-2"></div>
+        </div>
+
+        <div class="row">
+          <div class="col-xl-2"></div>
+          <div class="col-xl-8">
+            <div class="row">
+              <div class="col-xl-6">
+                <label for="availableon">Schedule Time (24 hr)</label>
+                <div class="input-group mb-3">
+                  <input
+                    required
+                    id="scheduleTime"
+                    name="scheduleTime"
+                    type="time"
+                    class="form-control"
+                    value="{{data['scheduleTime']}}"
+                    placeholder="Time"
+                  />
+                </div>
+              </div>
+              <div class="col-xl-6">
+                <label for="availableFrom">Resume</label>
+                <div class="input-group mb-3">
+                  <input
+                    id="resumePdf"
+                    name="resumePdf"
+                    type="file"
+                    accept="application/pdf"
+                    ,
+                    class="form-control"
+                    placeholder="resumePdf"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-2"></div>
+        </div>
+
+        <div class="row">
+          <div class="col-xl-12">
+            <div class="row">
+              <div class="col-xl-12">
+                <div class="d-flex justify-content-center">
+                  <div>
+                    <a href="{{url_for('upcoming')}}"
+                      ><button type="button" class="btn btn-warning">
+                        <i class="fa fa-arrow-left"></i> Back
+                      </button></a
+                    >
+                  </div>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <div>
+                    <button
+                      type="submit"
+                      value="submit"
+                      class="btn btn-warning"
+                    >
+                      <i class="fa fa-check"></i> Save
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
