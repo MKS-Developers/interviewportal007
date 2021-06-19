@@ -48,8 +48,13 @@ def viewSchedule():
 def getScheduleData():
   try:
     temp = db.reference('students').get()
-    temp = list(filter((None).__ne__, temp))
-    return jsonify(temp)
+    print(temp)
+    if type(temp) is dict:
+      data = list(filter((None).__ne__, temp.values()))
+    else:
+      data = list(filter((None).__ne__, temp))
+    # print(data)
+    return jsonify(data)
   except Exception as error:
     print(error)
     flash(error)
@@ -60,6 +65,18 @@ def database():
     temp = open("key/database_model.json")
     data = json.load(temp)
     return jsonify(data)
+  except Exception as error:
+    print(error)
+    flash(error)
+
+@app.route("/resetDatabase") # gives data to schedule route
+def resetDatabase():
+  try:
+    temp = open("key/database_model.json")
+    data = json.load(temp)
+    db.reference('/').set(data)
+    flash('Database is now reset! Enjoy your testing')
+    return redirect(url_for('home'))
   except Exception as error:
     print(error)
     flash(error)
@@ -107,7 +124,8 @@ def bookInterview(id):
       else:
         st = 'Timeslot ' +candidateData['scheduleTime'] +' is not avalable for ' + candidateData['name']
         flash(st)
-        return render_template("views/schedule/schedule.html", title="Schedule")
+        return redirect(url_for('schedule'))
+        # return render_template("views/schedule/schedule.html", title="Schedule")
 
     else:
       flash('Oops.. invalid route')
@@ -142,8 +160,9 @@ def viewUpcoming():
 def getUpcomingData():
   try:
     temp = db.reference('upcoming').get()
-    temp = list(filter((None).__ne__, temp))
-    return jsonify(temp)
+    data = list(filter((None).__ne__, temp))
+
+    return jsonify(data)
   except Exception as error:
     print(error)
     flash(error)
@@ -186,14 +205,15 @@ def editInterview(id):
           print('almost done')
         candidateData['id'] = id
         db.reference('upcoming').child(id).update(candidateData)
-        st = "Schedule changed "+candidateData['scheduleTime']
+        st = "Schedule of "+ candidateData['name']+" changed "+candidateData['scheduleTime']
         flash(st)
         print('success')
         return redirect(url_for('upcoming'))
       else:
         st = 'Timeslot ' +candidateData['scheduleTime'] +' is not avalable for ' + candidateData['name']
         flash(st)
-        return render_template("views/upcoming/upcoming.html", title="Upcoming")
+        return redirect(url_for('upcoming'))
+        # return render_template("views/upcoming/upcoming.html", title="Upcoming")
 
     else:
       flash('Oops.. invalid route')
