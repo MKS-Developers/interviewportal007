@@ -160,8 +160,10 @@ def viewUpcoming():
 def getUpcomingData():
   try:
     temp = db.reference('upcoming').get()
-    data = list(filter((None).__ne__, temp))
-
+    if type(temp) is dict:
+      data = list(filter((None).__ne__, temp.values()))
+    else:
+      data = list(filter((None).__ne__, temp))
     return jsonify(data)
   except Exception as error:
     print(error)
